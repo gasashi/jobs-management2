@@ -1,0 +1,53 @@
+<div class="container">
+  <h3>編集</h3>
+  <%= form_tag("/jobs/"+@job.id.to_s,:method=>:patch) do %>
+    <div class="form-group">
+      <%= label_tag "orderee", "受注先"%>
+      <%= text_field :jobs, :orderee, id:"orderee", class:"form-control", value: @job.orderee %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "serial_number", "製造番号"%>
+      <%= text_field :jobs, :serial_number, id:"serial_number", class:"form-control", value: @job.serial_number%>
+    </div>
+    <div class="form-group">
+      <%= label_tag "deadline", "納期"%>
+      <div class="input-group">
+        <%= text_field :jobs, :deadline, id:"deadline", class:"form-control date", value: @job.deadline%>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "comment", "コメント"%>
+      <%= text_field :jobs, :comment, id:"comment", class:"form-control", value: @job.comment%>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-status","ステータス"%>
+      <%= select_tag "jobs[status_id]", options_from_collection_for_select(@statuses, :id, :name),id:"form-status", class:"form-control" %>
+    </div>
+    <%= submit_tag "更新" ,class:"btn btn-primary"%>
+  <% end %>
+</div>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" media="screen" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/build/css/bootstrap-datetimepicker.css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="moment-ja.js"></script>
+<script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/src/js/bootstrap-datetimepicker.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  $('.date').datetimepicker({
+    locale: 'ja',
+    format : 'YYYY-MM-DD'
+  });
+});
+</script>
+</head>
+</html>
